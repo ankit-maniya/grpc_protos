@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+service Greeter {
+  // simple RPC
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc InvokeQRCodeScan(QRScanRequest) returns (QRScanResponse);
+  rpc SendQRCodeData(QRCodeData) returns (QRCodeResponse);
+}
+
+/**
+ * This is a leading comment for a message
+ */
+message HelloRequest {
+  // this is another leading comment
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+
+message QRScanRequest {
+  string request_id = 1;
+}
+
+message QRScanResponse {
+  string status = 1; // e.g., "SCAN_STARTED"
+}
+
+message QRCodeData {
+  string qr_code = 1;
+  string request_id = 2;
+}
+
+message QRCodeResponse {
+  string status = 1; // e.g., "DATA_RECEIVED"
+}
